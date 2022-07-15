@@ -228,6 +228,88 @@ template {
           box-sizing: border-box;
 }
 
+body {
+  background-color: #333;
+}
+
+.wrapper {
+  margin: 0 auto;
+  max-width: 1400px;
+}
+
+h1 {
+  font-family: "Roboto", sans-serif;
+  font-size: 2.7rem;
+  font-weight: bold;
+  text-align: center;
+  color: #003494;
+}
+
+.skipLink {
+  position: absolute;
+  left: -1000px;
+  top: 5px;
+  background-color: #73c2FB;
+  color: black;
+  z-index: 10;
+}
+.skipLink:focus {
+  left: 0;
+}
+
 .homeHeader {
   background-color: #73c2FB;
+  padding: 50px;
+}
+.homeHeader .wrapper .flexBox {
+  padding: 30px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-align: center;
+}
+.homeHeader .wrapper .flexBox .imgContainer {
+  max-width: 60%;
+  width: 50%;
+  top: 30%;
+}
+.homeHeader .wrapper .flexBox .imgContainer img {
+  width: 50%;
+}
+.homeHeader .wrapper form {
+  text-align: center;
+}
+.homeHeader .wrapper form input {
+  width: 70%;
+  padding: 10px;
+}
+.homeHeader .wrapper form button {
+  width: 5%;
+  padding: 10px;
+}
+.homeHeader .wrapper p {
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 20px;
+}
+.homeHeader .wrapper div {
+  margin-top: 20px;
+  text-align: center;
+}
+.homeHeader .wrapper div a {
+  font-size: 1.5rem;
+  color: #BF40BF;
+  -webkit-transition: 0.5s all;
+  transition: 0.5s all;
+}
+.homeHeader .wrapper div a:hover, .homeHeader .wrapper div a:focus {
+  color: #702963;
 }
