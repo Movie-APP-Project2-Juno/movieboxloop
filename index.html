@@ -6,6 +6,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="../styles/main.css">
   <script src="https://kit.fontawesome.com/2ef71f79fb.js" crossorigin="anonymous"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
   <title>MovieBox Loop</title>
 </head>
 <body>
@@ -14,16 +18,25 @@
     <!-- skipLink -->
     <a href="#main" class="skipLink">Skip to Main</a>
     <div class="wrapper">
-      <a href="#"><img src="./assets/project-logo.png" alt="This is our logo"></a>
-      <h1>Welcome to MovieBox Loop! </h1>
+      <div class="flexBox">
+        <div class="imgContainer">
+          <a href="#"><img src="./assets/project-logo.png" alt="This is our logo"></a>
+        </div>
+        <h1>Welcome to MovieBox Loop! </h1>
+      </div>
       <form action="">
         <label for="movieName" class="sr-only">Name</label>
         <input type="text" id="movieName" placeholder="Search Movies here">
         <button type="submit" id="submitBtn"><i class="fas fa-search"></i></button>
       </form>
       <p>Search results are from TMDB APIs</p>
-      <a href=""><i class="fas fa-folder">My watch list</i></a>
+      <div>
+        <a href=""><i class="fas fa-folder"> My watch list</i></a>
+      </div>
     </div>
   </header>
+  <main id="main">
+    
+  </main>
 </body>
 </html>
