@@ -6,3 +6,18 @@
   box-sizing: border-box;
 }
 
+// base styles
+body{
+  background-color: $mainColor;
+}
+.wrapper{
+  margin: 0 auto;
+  max-width: 1400px;
+}
+h1 {
+  font-family: 'Roboto', sans-serif;
+  font-size: calc(2.7 * $fontSize);
+  font-weight: bold;
+  text-align: center;
+  color: $secondary;
+  }
