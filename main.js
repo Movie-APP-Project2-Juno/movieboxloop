@@ -9,7 +9,7 @@ formEl.addEventListener('submit', function(event) {
     const inputEl = document.getElementById('movieName');
     // get the value of the value property and save it in a variable
     const movieSearch = inputEl.value;
-    // return movieSearch;
+    // call moviesApp.getMovies();
     moviesApp.getMovies(movieSearch);
 })
 
@@ -41,7 +41,6 @@ moviesApp.getMovies = function(movieInput) {
         // return the JSON response to pass it on to the next function
         // return response.json();
         console.log("hallelujah!!");
-        console.log(response);
         return response.json();
     })
     // parse the JSON Promise response and get JSON formatted data
@@ -70,4 +69,11 @@ fetch("https://api.themoviedb.org/3/search/movie?api_key=71bddb9affbe35fa416aaaa
     console.log(responseData);
 })
  */
-// https://api.themoviedb.org/3/movie/680304?api_key=71bddb9affbe35fa416aaaadad7cac9e
+fetch("https://api.themoviedb.org/3/movie/550?api_key=71bddb9affbe35fa416aaaadad7cac9e")
+.then(function(resp) {
+    console.log("sup");
+    return resp.json();
+})
+.then(function(jsonResp) {
+    console.log(jsonResp);
+})
