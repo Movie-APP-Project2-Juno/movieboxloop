@@ -245,6 +245,10 @@ h1 {
   color: #003494;
 }
 
+a {
+  text-decoration: none;
+}
+
 .skipLink {
   position: absolute;
   left: -1000px;
