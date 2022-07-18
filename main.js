@@ -7,12 +7,13 @@ const moviesApp ={};
 
 moviesApp.getInput = function(){
   const input =document.querySelector('#movieName');
-  const subButton = document.querySelector('#submitBtn');
+  //const subButton = document.querySelector('#submitBtn');
   const form = document.querySelector('.searchForm');
   
   form.addEventListener('submit', function(e){
    e.preventDefault();
-   moviesApp.removeMovies();
+   //moviesApp.removeMovies();
+   document.querySelector('#displayResults').innerHTML="";
    fetch(`https://api.themoviedb.org/3/search/movie?api_key=71bddb9affbe35fa416aaaadad7cac9e&language=en-US&query=${input.value}&page=1&include_adult=false`)
      .then(function(response){
       if(response.ok){
@@ -49,7 +50,7 @@ moviesApp.displayMovies = async function(movies){
   //get movie's id and store it in ID variable. 
   
   const ID = movie.id;
-  
+
   moviesApp.getMoviePage(ID).then(homepage=>{
     console.log("response is? ",homepage );
     //console.log("Homepage is ", homepage);
@@ -70,11 +71,11 @@ moviesApp.displayMovies = async function(movies){
  })
 }
 
-//remove display results
-moviesApp.removeMovies= function(){
-  const ul = document.querySelector('#displayResults');
-  ul.innerHTML="";
-}
+// // //remove display results
+// // moviesApp.removeMovies= function(){
+// //   const ul = document.querySelector('#displayResults');
+// //   ul.innerHTML="";
+// }
 
 //getMoviePage function
 moviesApp.getMoviePage = async function(ID){
