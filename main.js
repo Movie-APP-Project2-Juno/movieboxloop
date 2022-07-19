@@ -61,7 +61,7 @@ moviesApp.getInput = function(){
 
 moviesApp.displayMovies = async function(movies){
  console.log(movies.results);
- const movieLists= (movies.results).slice(0,9);
+ const movieLists= (movies.results).slice(0,8);
  console.log(movieLists);
  movieLists.forEach(function(movie){
   // poster_img link: https://image.tmdb.org/t/p/w300/p1F51Lvj3sMopG948F5HsBbl43C.jpg
@@ -77,7 +77,8 @@ moviesApp.displayMovies = async function(movies){
     listItem.innerHTML = `
     <img src="https://image.tmdb.org/t/p/w300/${movie.poster_path}" alt="This is the movie's poster">
     <div>
-      <p class='movieInfo'> Release Date: ${movie.release_date}, Score: ${movie.vote_average}</p>  
+      <p class='movieInfo'> Release Date: ${movie.release_date}</p> 
+      <p> Score: ${movie.vote_average} </p> 
       <a href= "${homepage}" target="_blank">Find More</a>
     </div>
      `
@@ -123,6 +124,10 @@ moviesApp.getMoviePage = async function(ID){
     console.log("inside homepage is ", homepage)
     return homepage;
  }
+
+//  PSEUDOCODE FOR WATCHLIST
+//  make a button to click on and trigger the event handler
+// it will store the li item in
 
 
 
