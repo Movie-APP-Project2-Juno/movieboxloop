@@ -13,6 +13,7 @@ moviesApp.getInput = function(){
   form.addEventListener('submit', function(e){
    e.preventDefault();
    //moviesApp.removeMovies();
+   // remove movies
    document.querySelector('#displayResults').innerHTML="";
    fetch(`https://api.themoviedb.org/3/search/movie?api_key=71bddb9affbe35fa416aaaadad7cac9e&language=en-US&query=${input.value}&page=1&include_adult=false`)
      .then(function(response){
@@ -42,7 +43,7 @@ moviesApp.getInput = function(){
 
 moviesApp.displayMovies = async function(movies){
  console.log(movies.results);
- const movieLists= (movies.results).slice(0,6);
+ const movieLists= (movies.results).slice(0,9);
  console.log(movieLists);
  movieLists.forEach(function(movie){
   // poster_img link: https://image.tmdb.org/t/p/w300/p1F51Lvj3sMopG948F5HsBbl43C.jpg
@@ -59,7 +60,7 @@ moviesApp.displayMovies = async function(movies){
     <img src="https://image.tmdb.org/t/p/w300/${movie.poster_path}" alt="This is the movie's poster">
     <div>
       <p class='movieInfo'> Release Date: ${movie.release_date}, Score: ${movie.vote_average}</p>  
-      <a href= "${homepage}" target="_blank">Find Me</a>
+      <a href= "${homepage}" target="_blank">Find More</a>
     </div>
      `
     const ul = document.querySelector('#displayResults');

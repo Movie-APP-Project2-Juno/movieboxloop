@@ -1,0 +1,46 @@
+// display section
+.results{
+  ul{
+    list-style-type: none;
+    margin: 0 20px;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-gap: 30px;
+    li {
+      background-color: $primary;
+      box-shadow: 0 0 40px 0px rgba(0, 0, 0, 0.1);
+      border-radius: 3px;
+      margin: 25px 0;
+      padding-bottom: 20px;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
+      div{
+        margin: 0 auto;
+        p{
+          margin: 5px;
+          text-align: center;
+          font-size: 1rem;
+          margin-bottom: 15px;
+        }
+        a{
+          padding: 5px 10px;
+          border: 1px solid red;
+          margin: 5px;
+          background-color:$mainColor;
+          color: $fontColor;
+          transition: 0.5s all;
+          &:hover, &:focus{
+            background-color: $fontColor;
+            color:$mainColor;
+          }
+          
+        }
+      }
+    }
+
+  }
+}
