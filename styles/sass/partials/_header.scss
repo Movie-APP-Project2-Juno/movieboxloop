@@ -10,22 +10,24 @@
   }}
 
 .homeHeader{
-  background-color: $primary;
-  padding: 50px;
+  background-color: #333;
+  padding: 20px;
   .wrapper{
     .flexBox{
-      padding: 30px;
+      padding: 20px;
       display: flex;
       justify-content: flex-start;
       align-items: center;
       text-align: center;
+      h1{
+        color: $fontColor;
+      }
       .imgContainer{
         max-width:60%;
         width:50%;
-        top:30%;
+        top:20%;
         img{
           width: 50%;
-    
         }
       }
     }
@@ -46,6 +48,7 @@
       font-weight: bold;
       text-align: center;
       margin-top: 20px;
+      color: $fontColor;
     }
     div{
       margin-top: 20px;
