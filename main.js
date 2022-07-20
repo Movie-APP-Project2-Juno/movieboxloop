@@ -18,62 +18,117 @@ formEl.addEventListener('submit', function(event) {
 // a namespace object to hold our app:
 const moviesApp ={};
 
-// API url
-moviesApp.url = "https://api.themoviedb.org/3/search/movie";
-// API key
-moviesApp.key = "71bddb9affbe35fa416aaaadad7cac9e";
+//name space object
+const moviesApp ={};
 
-// crete a method on the moviesApp object which requests info. from the API
-moviesApp.getMovies = function(movieInput) {
-    // use the URL constructor to specify the parameters we wish to incldue in our API endpoint.
-    const url = new URL(moviesApp.url);
-    url.search = new URLSearchParams({
-        // pass in our API key as a parameter
-        api_key: moviesApp.key,
-        query: movieInput
-    })
+// get input from search bar
 
-    // using  the fetch API to make a request to the TMDB API movie search endpoint
-    // pass in the new URL with params from the URLSearchParams constructor
-    fetch(url)
-    .then(function(response) {
-        // parse this response into JSON
-        // return the JSON response to pass it on to the next function
-        // return response.json();
-        console.log("hallelujah!!");
+moviesApp.getInput = function(){
+  const input =document.querySelector('#movieName');
+  const subButton = document.querySelector('#submitBtn');
+  const form = document.querySelector('.searchForm');
+  
+  form.addEventListener('submit', function(e){
+   e.preventDefault();
+   moviesApp.removeMovies();
+   fetch(`https://api.themoviedb.org/3/search/movie?api_key=71bddb9affbe35fa416aaaadad7cac9e&language=en-US&query=${input.value}&page=1&include_adult=false`)
+     .then(function(response){
+      if(response.ok){
         return response.json();
+      }else{
+        throw new Error(response.statusText);
+      }
+      
+     })
+     .then(function(responseData){
+      moviesApp.displayMovies(responseData);
+     })
+     .catch(function(err){
+      if (err.message === "Not Found") {
+        alert("We couldn't find that movie!");
+      } else {
+        alert("Something went wrong...");
+      }
+     })
+   input.value="";
+  })
+  
+}
+
+//display results 
+
+moviesApp.displayMovies = async function(movies){
+ console.log(movies.results);
+ const movieLists= (movies.results).slice(0,6);
+ console.log(movieLists);
+ movieLists.forEach(function(movie){
+  // poster_img link: https://image.tmdb.org/t/p/w300/p1F51Lvj3sMopG948F5HsBbl43C.jpg
+  
+  //get movie's id and store it in ID variable. 
+  
+  const ID = movie.id;
+  
+  moviesApp.getMoviePage(ID).then(homepage=>{
+    console.log("response is? ",homepage );
+    //console.log("Homepage is ", homepage);
+    const listItem = document.createElement('li');
+    listItem.innerHTML = `
+    <img src="https://image.tmdb.org/t/p/w300/${movie.poster_path}" alt="This is the movie's poster">
+    <div>
+      <p class='movieInfo'> Release Date: ${movie.release_date}, Score: ${movie.vote_average}</p>  
+      <a href= "${homepage}" target="_blank">Find Me</a>
+    </div>
+     `
+    const ul = document.querySelector('#displayResults');
+    ul.append(listItem);
+  })
+ 
+
+  
+ })
+}
+
+//remove display results
+moviesApp.removeMovies= function(){
+  const ul = document.querySelector('#displayResults');
+  ul.innerHTML="";
+}
+
+//getMoviePage function
+moviesApp.getMoviePage = async function(ID){
+ // get another url to fetch more info data about the movie
+ const url = `https://api.themoviedb.org/3/movie/${ID}?api_key=71bddb9affbe35fa416aaaadad7cac9e`;
+ let homepage = await fetch(url)
+    .then(function(response){
+     if(response.ok){
+       return response.json();
+     }else{
+       throw new Error(response.statusText);
+     }
+     
     })
-    // parse the JSON Promise response and get JSON formatted data
-    .then(function(jsonResponse) {
-        console.log(jsonResponse);
+    .then(function(responseData){
+     
+     return responseData.homepage;
     })
+    .catch(function(err){
+     if (err.message === "Not Found") {
+       alert("We couldn't find that movie!");
+     } else {
+       alert("Something went wrong...");
+     }
+    })
+    console.log("inside homepage is ", homepage)
+    return homepage;
+ }
+
+
+
+//make init function 
+moviesApp.init=function(){
+ moviesApp.getInput();
 }
 
 
-
-// an init method that will run when our app first loads.
-moviesApp.init = function() {
-    // calling the methods which makes the request to the API
-    moviesApp.getMovies();
-}
-
-// call the init method to kickstart our app
+//run init function 
 moviesApp.init();
-
-/* 
-fetch("https://api.themoviedb.org/3/search/movie?api_key=71bddb9affbe35fa416aaaadad7cac9e&query=fight club")
-.then(function(response) {
-    return response.json();
-})
-.then(function(responseData) {
-    console.log(responseData);
-})
- */
-fetch("https://api.themoviedb.org/3/movie/550?api_key=71bddb9affbe35fa416aaaadad7cac9e")
-.then(function(resp) {
-    console.log("sup");
-    return resp.json();
-})
-.then(function(jsonResp) {
-    console.log(jsonResp);
-})
