@@ -321,6 +321,39 @@ a {
   color: #702963;
 }
 
+main .wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  -webkit-column-gap: 2rem;
+     -moz-column-gap: 2rem;
+          column-gap: 2rem;
+  max-width: 1200px;
+  width: 90%;
+}
+main .wrapper .movieDisplay {
+  border: 5px dashed yellowgreen;
+}
+main .wrapper .tabBox {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  background-color: burlywood;
+  color: black;
+}
+main .wrapper .tabBox .buttonContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 40px;
+}
+main .wrapper .tabContent {
+  display: none;
+}
+main .wrapper .tabButton.active {
+  background-color: white;
+}
+main .wrapper .tabContent.active {
+  display: block;
+}
+
 .results ul {
   list-style-type: none;
   margin: 0 20px;
@@ -333,9 +366,10 @@ a {
   background-color: #73c2FB;
   -webkit-box-shadow: 0 0 40px 0px rgba(0, 0, 0, 0.1);
           box-shadow: 0 0 40px 0px rgba(0, 0, 0, 0.1);
-  border-radius: 3px;
+  border-radius: 15px;
   margin: 25px 0;
   padding-bottom: 20px;
+  position: relative;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -346,6 +380,10 @@ a {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+}
+.results ul li:hover .synopsisOverlay {
+  bottom: 0;
+  height: 100%;
 }
 .results ul li div {
   margin: 15px auto 0;
@@ -379,4 +417,35 @@ a {
 .results ul li div a:hover, .results ul li div a:focus {
   background-color: #fff;
   color: #333;
+}
+.results ul .synopsisOverlay {
+  position: absolute;
+  bottom: 100%;
+  left: 0;
+  right: 0;
+  overflow: hidden;
+  width: 100%;
+  height: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  -webkit-transition: 0.5s ease;
+  transition: 0.5s ease;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.results ul .synopsisText {
+  color: white;
+  font-size: 1.2rem;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  position: absolute;
+  text-align: center;
+  padding: 10px;
+  line-height: 1.4;
+  overflow-y: scroll;
 }

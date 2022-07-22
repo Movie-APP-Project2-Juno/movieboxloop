@@ -1,22 +1,3 @@
-// Form Submission
-// storing form element in a variable
-const formEl = document.getElementById('movieForm');
-const displayResultsEl = document.getElementById('displayResults');
-// listen for the submit on the form and store the "value" in a variable
-formEl.addEventListener('submit', function(event) {
-    event.preventDefault();
-    // store the searched input value in a variable
-    const inputEl = document.getElementById('movieName');
-    // get the value of the value property and save it in a variable
-    const movieSearch = inputEl.value;
-    // call moviesApp.getMovies();
-    moviesApp.getMovies(movieSearch);
-})
-
-
-//api key 
-// a namespace object to hold our app:
-const moviesApp ={};
 
 //name space object
 const moviesApp ={};
@@ -43,6 +24,7 @@ moviesApp.getInput = function(){
       
      })
      .then(function(responseData){
+        console.log(responseData);
       moviesApp.displayMovies(responseData);
      })
      .catch(function(err){
@@ -63,14 +45,16 @@ moviesApp.displayMovies = async function(movies){
  console.log(movies.results);
  const movieLists= (movies.results).slice(0,8);
  console.log(movieLists);
+
  movieLists.forEach(function(movie){
   // poster_img link: https://image.tmdb.org/t/p/w300/p1F51Lvj3sMopG948F5HsBbl43C.jpg
   
   //get movie's id and store it in ID variable. 
   
   const ID = movie.id;
+//   const movieOverview = movie.overview;
 
-  moviesApp.getMoviePage(ID).then(homepage=>{
+  moviesApp.getMoviePage(ID).then(homepage =>{
     console.log("response is? ",homepage );
     //console.log("Homepage is ", homepage);
     const listItem = document.createElement('li');
@@ -80,6 +64,10 @@ moviesApp.displayMovies = async function(movies){
       <p class='movieInfo'> Release Date: ${movie.release_date}</p> 
       <p> Score: ${movie.vote_average} </p> 
       <a href= "${homepage}" target="_blank">Find More</a>
+    </div>
+
+    <div class="synopsisOverlay">
+        <p class="synopsisText">${movie.overview}</p>
     </div>
      `
     const ul = document.querySelector('#displayResults');
@@ -101,6 +89,28 @@ moviesApp.displayMovies = async function(movies){
 moviesApp.getMoviePage = async function(ID){
  // get another url to fetch more info data about the movie
  const url = `https://api.themoviedb.org/3/movie/${ID}?api_key=71bddb9affbe35fa416aaaadad7cac9e`;
+
+/*  let movieIdObject = await fetch(url)
+ .then(function(response) {
+    if(response.ok) {
+        return response.json();
+    } else {
+        throw new Error(response.statusText);
+    }
+ })
+ .then(function(responseData) {
+    return responseData;
+ })
+ .catch(function(err) {
+    if (err.message === "Not Found") {
+       alert("We couldn't find that movie!");
+     } else {
+       alert("Something went wrong...");
+     }
+    })
+ 
+ return movieIdObject; */
+
  let homepage = await fetch(url)
     .then(function(response){
      if(response.ok){
@@ -111,7 +121,8 @@ moviesApp.getMoviePage = async function(ID){
      
     })
     .then(function(responseData){
-     
+     console.log(responseData);
+     console.log(responseData.overview);
      return responseData.homepage;
     })
     .catch(function(err){
@@ -129,7 +140,37 @@ moviesApp.getMoviePage = async function(ID){
 //  make a button to click on and trigger the event handler
 // it will store the li item in
 
+const buttons = document.querySelectorAll('.tabButton');
+const tabs = document.querySelector('.tabBox');
+const tabContentEl = document.querySelectorAll('.tabContent');
 
+tabs.addEventListener('click', function(e) {
+    // console.log(e.target.dataset.id);
+    const id = e.target.dataset.id;
+    console.log(id);
+
+    /* if(id) {
+        // remove active from other buttons
+        buttons.forEach(function(btn) {
+            btn.classList.remove('active');
+            e.target.classList.add('active');
+        });
+        // hide other tab content
+        tabContentEl.forEach(function(tabContent) {
+            tabContent.classList.remove('active');
+        });
+        const element = document.getElementById(id);
+        element.classList.add('active');
+    } */
+});
+
+/* fetch('https://api.themoviedb.org/3/movie/343611?api_key=71bddb9affbe35fa416aaaadad7cac9e')
+.then(function(resp) {
+    return resp.json();
+})
+.then(function(respJson) {
+    console.log(respJson);
+}) */
 
 //make init function 
 moviesApp.init=function(){

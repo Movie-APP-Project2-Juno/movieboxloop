@@ -20,9 +20,9 @@
     <div class="wrapper">
       <div class="flexBox">
         <div class="imgContainer">
+          <h1>Welcome to</h1>
           <a href="#"><img src="./assets/project-logo.png" alt="This is our logo"></a>
         </div>
-        <h1>Welcome to MovieBox Loop! </h1>
       </div>
       <form action="" class="searchForm">
         <label for="movieName" class="sr-only">Name</label>
@@ -36,17 +36,39 @@
     </div>
   </header>
 
-
-
   <main id="main">
-    <section class="results">
-    
-      <ul id="displayResults">
+    <section class="wrapper">
+      <!-- THE movie display box -->
+      <div class="movieDisplay">
 
-
-      </ul>
+      </div>
+      <!-- two tab display box -->
+      <div class="tabBox">
+        <!-- button container -->
+        <div class="buttonContainer">
+          <button class="tabButton" data-id="smt">Similar Movie Titles</button>
+          <button class="tabButton" data-id="watchlist">Watchlist</button>
+        </div>
+        <!-- tab content -->
+        <div class="Content">
+          <div id="smt" class="tabContent active">
+            <h1>Similar Movie Titles</h1>
+          </div>
+          <div id="watchList" class="tabContent">
+            <h1>Watchlist</h1>
+          </div>
+        </div>
+      </div>
 
     </section>
+
+
+    <section class="results ">
+      <ul id="displayResults">
+
+      </ul>
+    </section>
+
   </main>
 
   <script src="./main.js"></script>
