@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -12,24 +13,26 @@
 
   <title>MovieBox Loop</title>
 </head>
+
 <body>
-  
+
   <header class="homeHeader">
     <!-- skipLink -->
-    <!-- <a href="#main" class="skipLink">Skip to Main</a> -->
+    <a href="#main" class="skipLink">Skip to Main</a>
     <div class="wrapper">
-      <div class="flexBox">
-        <div class="imgContainer">
-          <h1>Welcome to</h1>
+
+      <div class="imgContainer">
+        <h1>Welcome to</h1>
+        <div class="logo">
           <a href="#"><img src="./assets/project-logo.png" alt="This is our logo"></a>
         </div>
       </div>
       <form action="" class="searchForm">
         <label for="movieName" class="sr-only">Name</label>
-        <input type="text" id="movieName" placeholder="Search Movies here">
+        <input type="text" id="movieName" placeholder="Search Movies here . . .">
         <button type="submit" id="submitBtn"><i class="fas fa-search"></i></button>
       </form>
-      <p>Search results are from TMDB APIs</p>
+      <p>Powered by TMDB APIs</p>
       <div>
         <a href=""><i class="fas fa-folder"> My watch list</i></a>
       </div>
@@ -37,30 +40,7 @@
   </header>
 
   <main id="main">
-    <section class="wrapper">
-      <!-- THE movie display box -->
-      <div class="movieDisplay">
 
-      </div>
-      <!-- two tab display box -->
-      <div class="tabBox">
-        <!-- button container -->
-        <div class="buttonContainer">
-          <button class="tabButton" data-id="smt">Similar Movie Titles</button>
-          <button class="tabButton" data-id="watchlist">Watchlist</button>
-        </div>
-        <!-- tab content -->
-        <div class="Content">
-          <div id="smt" class="tabContent active">
-            <h1>Similar Movie Titles</h1>
-          </div>
-          <div id="watchList" class="tabContent">
-            <h1>Watchlist</h1>
-          </div>
-        </div>
-      </div>
-
-    </section>
 
 
     <section class="results ">
@@ -73,4 +53,5 @@
 
   <script src="./main.js"></script>
 </body>
+
 </html>

@@ -1,44 +1,13 @@
-main .wrapper {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  column-gap: 2rem;
-  max-width: 1200px;
-  width: 90%;
-  .movieDisplay {
-    border: 5px dashed yellowgreen;
-  }
-  .tabBox {
-    display: grid;
-    grid-template-rows: auto 1fr;
-    background-color: burlywood;
-    color: black;
-    .buttonContainer {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      grid-template-rows: 40px;
-    }
-  }
-  // to hide content
-  .tabContent {
-    display: none;
-  }
-  .tabButton.active {
-    background-color: white;
-  }
-  .tabContent.active {
-    display: block;
-  }
-}
-
 // display section
-.results{
-  ul{
+.results {
+  ul {
     list-style-type: none;
     margin: 0 20px;
     padding: 0;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     grid-gap: 45px;
+
     li {
       background-color: $primary;
       box-shadow: 0 0 40px 0px rgba(0, 0, 0, 0.1);
@@ -49,37 +18,48 @@ main .wrapper {
       display: flex;
       flex-direction: column;
       justify-content: center;
+
       &:hover .synopsisOverlay {
         bottom: 0;
         height: 100%;
       }
 
-      div{
+
+      div {
         margin: 15px auto 0;
         display: flex;
         flex-direction: column;
         align-items: center;
-        p{
-          margin: 5px;
+
+        p {
+          margin: 3px;
           text-align: center;
           font-size: 1.5rem;
           margin-bottom: 15px;
         }
-        a{
+
+        a {
           font-size: 1.5rem;
           padding: 5px 10px;
           border: 1px solid red;
-          margin: 5px;
-          background-color:$mainColor;
+          margin: 3px;
+          background-color: $mainColor;
           color: $fontColor;
+          z-index: 100;
           transition: 0.5s all;
-          &:hover, &:focus{
+
+          &:hover,
+          &:focus {
             background-color: $fontColor;
-            color:$mainColor;
+            color: $mainColor;
           }
+
+
+
         }
       }
     }
+
     .synopsisOverlay {
       position: absolute;
       bottom: 100%;
@@ -88,21 +68,23 @@ main .wrapper {
       overflow: hidden;
       width: 100%;
       height: 0;
-      background-color: rgba(0, 0, 0, 0.7);
-      transition: 0.5s ease;
+      background-color: rgba(0, 0, 0, 0.5);
+      transition: 0.7s ease;
       display: flex;
       justify-content: center;
       align-items: center;
     }
+
     .synopsisText {
       color: white;
       font-size: 1.2rem;
-      font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       position: absolute;
       text-align: center;
       padding: 10px;
       line-height: 1.4;
       overflow-y: scroll;
     }
+
   }
 }
