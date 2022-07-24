@@ -77,10 +77,10 @@ moviesApp.displayMovies = function(movies){
     listItem.innerHTML = `
     
     ${moviePoster}
-    <div>
-      <p>Title: ${movie.title}</p>
-      <p class='movieInfo'> Release Date: ${movie.release_date}</p> 
-      <p> Score: ${movie.vote_average} </p> 
+    <div class="movieInfo">
+      <p>${movie.title}</p>
+      <p> ${movie.release_date}</p> 
+      <p> Ratings: ${movie.vote_average} / 10 </p> 
       ${movieurl}
     </div>
 
