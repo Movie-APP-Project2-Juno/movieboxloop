@@ -61,7 +61,7 @@ moviesApp.displayMovies = function(movies){
   moviesApp.getMoviePage(ID).then(homepage=>{
     // create li item
     const listItem = document.createElement('li');
-    // if the homepage link doesn't exist, trun off the link; 
+    // if the homepage link doesn't exist, turn off the link; 
     const movieurl= (homepage!=""? 
     `<a href= "${homepage}" target="_blank">Find Me</a>`:
     `<a href= "javascript:void(0)">No Page</a>`)
@@ -72,6 +72,12 @@ moviesApp.displayMovies = function(movies){
     `<img src="https://image.tmdb.org/t/p/w300/${movie.poster_path}" alt="This is the movie's poster">`:
     `<img src="./assets/dummy.png" alt="This is a placeholder image">`
     );
+    // if the movie's overview is too long, make it shorter 
+    let words = movie.overview.split(" ");
+    let maxLen=80;
+    let overview = (words.length < maxLen)? 
+    movie.overview: 
+    words.slice(0,maxLen).join(" ")+"...";
     
     // add innerhtml to li item
     listItem.innerHTML = `
@@ -85,7 +91,7 @@ moviesApp.displayMovies = function(movies){
     </div>
 
     <div class="synopsisOverlay">
-      <p class="synopsisText">${movie.overview}</p>
+      <p class="synopsisText">${overview}</p>
     </div>
      `
      // append list item to ul 
