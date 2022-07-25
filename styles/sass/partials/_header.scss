@@ -1,48 +1,47 @@
-.skipLink{
+.skipLink {
   position: absolute;
-  left:-1000px;
-  top:5px;
+  left: -1000px;
+  top: 5px;
   background-color: $primary;
   color: black;
-  z-index:10;
-  &:focus{
-    left:0;
-  }}
+  z-index: 10;
 
-.homeHeader{
-  background-color: #333;
-  padding: 20px;
-  .wrapper{
-    .flexBox{
-      padding: 20px;
-      display: flex;
-      justify-content: flex-start;
-      align-items: center;
+  &:focus {
+    left: 0;
+  }
+}
+
+  .wrapper {
+
+    .searchForm {
       text-align: center;
-      h1{
-        color: $fontColor;
+      height: 4rem;
+      width: 100%;
+
+      input {
+        width: 70%;
+        height: inherit;
+        padding: 10px 10px 10px 20px;
+        margin-right: 5px;
+        font-size: 1.5rem;
+        border-radius: 35px;
+        border: none;
       }
-      .imgContainer{
-        max-width:60%;
-        width:50%;
-        top:20%;
-        img{
-          width: 50%;
+
+      button {
+        width: 4rem;
+        height: inherit;
+        padding: 10px;
+        font-size: 1.5rem;
+        border-radius: 4rem;
+        border: none;
+        &:hover {
+          cursor: pointer;
         }
       }
     }
-    form{
-      text-align: center;
-      input{
-        width:70%;
-        padding: 10px;
-      }
-      button{
-        width:5%;
-        padding:10px;
-      }
-    }
-    p{
+
+    p {
       text-align: center;
       font-size: calc(1.5 * $fontSize);
       font-weight: bold;
@@ -50,17 +49,44 @@
       margin-top: 20px;
       color: $fontColor;
     }
-    div{
-      margin-top: 20px;
-      text-align: center;
-      a{
-        font-size:1.5rem;
+
+    div {
+      margin: 50px 0;
+
+      a {
+        font-size: 1.5rem;
         color: $brightPurple;
         transition: 0.5s all;
-        &:hover,&:focus{
-         color: $darkPurple;
+
+        &:hover,
+        &:focus {
+          color: $darkPurple;
         }
       }
     }
   }
-}
+
+  .imgContainer {
+    max-width: 100%;
+    display: flex;
+    margin-top: 0 auto;
+    justify-content: space-between;
+    align-items: center;
+
+    h1 {
+      color: $fontColor;
+      display: inline-block;
+      font-size: 4rem;
+      text-transform: uppercase;
+      margin-right: 3.5rem;
+    }
+
+    .logo {
+      max-width: 50%;
+    }
+
+    img {
+      width: 100%;
+    }
+  }
+  

@@ -12,7 +12,12 @@ body{
 }
 .wrapper{
   margin: 0 auto;
+  width: 90%;
   max-width: 1400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 h1 {
   font-family: 'Roboto', sans-serif;
