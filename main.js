@@ -1,21 +1,27 @@
-//api key 
-
 //name space object
 const moviesApp ={};
-
+moviesApp.key= '71bddb9affbe35fa416aaaadad7cac9e';
 // get input from search bar
 
 moviesApp.getInput = function(){
   const input =document.querySelector('#movieName');
-  //const subButton = document.querySelector('#submitBtn');
   const form = document.querySelector('.searchForm');
   
   form.addEventListener('submit', function(e){
    e.preventDefault();
-   //moviesApp.removeMovies();
    // remove movies
    document.querySelector('#displayResults').innerHTML="";
-   fetch(`https://api.themoviedb.org/3/search/movie?api_key=71bddb9affbe35fa416aaaadad7cac9e&language=en-US&query=${input.value}&page=1&include_adult=false`)
+   
+   // get movie data from API and display movies
+   const url = new URL('https://api.themoviedb.org/3/search/movie?')
+   url.search = new URLSearchParams({
+    api_key:moviesApp.key,
+    language:'en-US',
+    query:`${input.value}`,
+    page:'1',
+    include_adult:'false'
+   });
+   fetch(url)
      .then(function(response){
       if(response.ok){
         return response.json();
@@ -41,48 +47,71 @@ moviesApp.getInput = function(){
 
 //display results 
 
-moviesApp.displayMovies = async function(movies){
- console.log(movies.results);
- const movieLists= (movies.results).slice(0,9);
- console.log(movieLists);
+moviesApp.displayMovies = function(movies){
+ 
+  //get a list of movies and store them in a variable
+ const movieLists= (movies.results).slice(0,8);
+ 
  movieLists.forEach(function(movie){
-  // poster_img link: https://image.tmdb.org/t/p/w300/p1F51Lvj3sMopG948F5HsBbl43C.jpg
   
   //get movie's id and store it in ID variable. 
   
   const ID = movie.id;
 
   moviesApp.getMoviePage(ID).then(homepage=>{
-    console.log("response is? ",homepage );
-    //console.log("Homepage is ", homepage);
+    // create li item
     const listItem = document.createElement('li');
+    // if the homepage link doesn't exist, turn off the link; 
+    const movieurl= (homepage!=""? 
+    `<a href= "${homepage}" target="_blank">Find Me</a>`:
+    `<a href= "javascript:void(0)">No Page</a>`)
+
+    // if the poster img doesn't exist, load dummy img. 
+
+    const moviePoster =( movie.poster_path!=null?
+    `<img src="https://image.tmdb.org/t/p/w300/${movie.poster_path}" alt="This is the movie's poster">`:
+    `<img src="./assets/dummy.png" alt="This is a placeholder image">`
+    );
+    // if the movie's overview is too long, make it shorter 
+    let words = movie.overview.split(" ");
+    let maxLen=80;
+    let overview = (words.length < maxLen)? 
+    movie.overview: 
+    words.slice(0,maxLen).join(" ")+"...";
+    
+    // add innerhtml to li item
     listItem.innerHTML = `
-    <img src="https://image.tmdb.org/t/p/w300/${movie.poster_path}" alt="This is the movie's poster">
-    <div>
-      <p class='movieInfo'> Release Date: ${movie.release_date}, Score: ${movie.vote_average}</p>  
-      <a href= "${homepage}" target="_blank">Find More</a>
+    
+    ${moviePoster}
+    <div class="movieInfo">
+      <p>${movie.title}</p>
+      <p> ${movie.release_date}</p> 
+      <p> Ratings: ${movie.vote_average} / 10 </p> 
+      ${movieurl}
+    </div>
+
+    <div class="synopsisOverlay">
+      <p class="synopsisText">${overview}</p>
     </div>
      `
+     // append list item to ul 
     const ul = document.querySelector('#displayResults');
     ul.append(listItem);
   })
- 
-
   
  })
 }
 
-// // //remove display results
-// // moviesApp.removeMovies= function(){
-// //   const ul = document.querySelector('#displayResults');
-// //   ul.innerHTML="";
-// }
+
 
 //getMoviePage function
-moviesApp.getMoviePage = async function(ID){
+moviesApp.getMoviePage =  function(ID){
  // get another url to fetch more info data about the movie
- const url = `https://api.themoviedb.org/3/movie/${ID}?api_key=71bddb9affbe35fa416aaaadad7cac9e`;
- let homepage = await fetch(url)
+ const movieurl = new URL(`https://api.themoviedb.org/3/movie/${ID}`)
+ movieurl.search = new URLSearchParams({
+  api_key:'71bddb9affbe35fa416aaaadad7cac9e'
+ })
+ let homepage = fetch(movieurl)
     .then(function(response){
      if(response.ok){
        return response.json();
@@ -102,9 +131,10 @@ moviesApp.getMoviePage = async function(ID){
        alert("Something went wrong...");
      }
     })
-    console.log("inside homepage is ", homepage)
+    
     return homepage;
  }
+
 
 
 

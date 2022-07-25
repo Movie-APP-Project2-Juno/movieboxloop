@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -12,43 +13,45 @@
 
   <title>MovieBox Loop</title>
 </head>
+
 <body>
-  
+
   <header class="homeHeader">
     <!-- skipLink -->
-    <!-- <a href="#main" class="skipLink">Skip to Main</a> -->
+    <a href="#main" class="skipLink">Skip to Main</a>
     <div class="wrapper">
-      <div class="flexBox">
-        <div class="imgContainer">
+
+      <div class="imgContainer">
+        <h1>Welcome to</h1>
+        <div class="logo">
           <a href="#"><img src="./assets/project-logo.png" alt="This is our logo"></a>
         </div>
-        <h1>Welcome to MovieBox Loop! </h1>
       </div>
       <form action="" class="searchForm">
         <label for="movieName" class="sr-only">Name</label>
-        <input type="text" id="movieName" placeholder="Search Movies here">
+        <input type="text" id="movieName" placeholder="Search Movies here . . .">
         <button type="submit" id="submitBtn"><i class="fas fa-search"></i></button>
       </form>
-      <p>Search results are from TMDB APIs</p>
+      <p>Powered by TMDB APIs</p>
       <div>
         <a href=""><i class="fas fa-folder"> My watch list</i></a>
       </div>
     </div>
   </header>
 
-
-
   <main id="main">
-    <section class="results">
-    
+
+
+
+    <section class="results ">
       <ul id="displayResults">
 
-
       </ul>
-
     </section>
+
   </main>
 
   <script src="./main.js"></script>
 </body>
+
 </html>

@@ -234,7 +234,21 @@ body {
 
 .wrapper {
   margin: 0 auto;
+  width: 90%;
   max-width: 1400px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 h1 {
@@ -252,7 +266,7 @@ a {
   position: absolute;
   left: -1000px;
   top: 5px;
-  background-color: #73c2FB;
+  background-color: #000;
   color: black;
   z-index: 10;
 }
@@ -260,46 +274,32 @@ a {
   left: 0;
 }
 
-.homeHeader {
-  background-color: #333;
-  padding: 20px;
-}
-.homeHeader .wrapper .flexBox {
-  padding: 20px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: start;
-      -ms-flex-pack: start;
-          justify-content: flex-start;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+.wrapper .searchForm {
   text-align: center;
+  height: 4rem;
+  width: 100%;
 }
-.homeHeader .wrapper .flexBox h1 {
-  color: #fff;
-}
-.homeHeader .wrapper .flexBox .imgContainer {
-  max-width: 60%;
-  width: 50%;
-  top: 20%;
-}
-.homeHeader .wrapper .flexBox .imgContainer img {
-  width: 50%;
-}
-.homeHeader .wrapper form {
-  text-align: center;
-}
-.homeHeader .wrapper form input {
+.wrapper .searchForm input {
   width: 70%;
-  padding: 10px;
+  height: inherit;
+  padding: 10px 10px 10px 20px;
+  margin-right: 5px;
+  font-size: 1.5rem;
+  border-radius: 35px;
+  border: none;
 }
-.homeHeader .wrapper form button {
-  width: 5%;
+.wrapper .searchForm button {
+  width: 4rem;
+  height: inherit;
   padding: 10px;
+  font-size: 1.5rem;
+  border-radius: 4rem;
+  border: none;
 }
-.homeHeader .wrapper p {
+.wrapper .searchForm button:hover {
+  cursor: pointer;
+}
+.wrapper p {
   text-align: center;
   font-size: 1.5rem;
   font-weight: bold;
@@ -307,18 +307,44 @@ a {
   margin-top: 20px;
   color: #fff;
 }
-.homeHeader .wrapper div {
-  margin-top: 20px;
-  text-align: center;
+.wrapper div {
+  margin: 50px 0;
 }
-.homeHeader .wrapper div a {
+.wrapper div a {
   font-size: 1.5rem;
   color: #BF40BF;
   -webkit-transition: 0.5s all;
   transition: 0.5s all;
 }
-.homeHeader .wrapper div a:hover, .homeHeader .wrapper div a:focus {
+.wrapper div a:hover, .wrapper div a:focus {
   color: #702963;
+}
+
+.imgContainer {
+  max-width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-top: 0 auto;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.imgContainer h1 {
+  color: #fff;
+  display: inline-block;
+  font-size: 4rem;
+  text-transform: uppercase;
+  margin-right: 3.5rem;
+}
+.imgContainer .logo {
+  max-width: 50%;
+}
+.imgContainer img {
+  width: 100%;
 }
 
 .results ul {
@@ -326,16 +352,17 @@ a {
   margin: 0 20px;
   padding: 0;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  grid-gap: 30px;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-gap: 45px;
 }
 .results ul li {
-  background-color: #73c2FB;
+  background-color: rgba(0, 0, 0, 0.4);
   -webkit-box-shadow: 0 0 40px 0px rgba(0, 0, 0, 0.1);
           box-shadow: 0 0 40px 0px rgba(0, 0, 0, 0.1);
-  border-radius: 3px;
+  border-radius: 15px;
   margin: 25px 0;
   padding-bottom: 20px;
+  position: relative;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -346,26 +373,110 @@ a {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  color: #fff;
+}
+.results ul li:hover .synopsisOverlay {
+  bottom: 0%;
+  height: 100%;
 }
 .results ul li div {
-  margin: 0 auto;
+  margin: 15px auto 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 .results ul li div p {
-  margin: 5px;
+  margin: 3px;
   text-align: center;
-  font-size: 1rem;
+  font-size: 1.5rem;
   margin-bottom: 15px;
 }
 .results ul li div a {
+  font-size: 1.5rem;
   padding: 5px 10px;
   border: 1px solid red;
-  margin: 5px;
+  margin: 3px;
   background-color: #333;
   color: #fff;
+  z-index: 100;
   -webkit-transition: 0.5s all;
   transition: 0.5s all;
 }
 .results ul li div a:hover, .results ul li div a:focus {
   background-color: #fff;
   color: #333;
+}
+.results ul .movieInfo {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+.results ul .synopsisOverlay {
+  position: absolute;
+  bottom: 100%;
+  left: 0;
+  right: 0;
+  overflow: hidden;
+  width: 100%;
+  height: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  -webkit-transition: 0.4s ease;
+  transition: 0.4s ease;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.results ul .synopsisText {
+  color: #fff;
+  font-size: 1.2rem;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  position: absolute;
+  text-align: center;
+  padding: 10px;
+  line-height: 1.4;
+  overflow-y: scroll;
+}
+
+@media (max-width: 1020px) {
+  .imgContainer h1 {
+    font-size: 3rem;
+    margin-right: 2rem;
+  }
+}
+@media (max-width: 741px) {
+  .wrapper .imgContainer {
+    display: block;
+    width: 100%;
+    text-align: center;
+  }
+  .wrapper .imgContainer h1 {
+    margin-right: 0;
+  }
+  .wrapper .imgContainer .logo {
+    margin: auto;
+    width: 60%;
+  }
+  .wrapper .searchForm {
+    height: 3rem;
+  }
+  .wrapper .searchForm input {
+    padding: 5px 5px 5px 10px;
+    font-size: 1rem;
+  }
+  .wrapper .searchForm button {
+    width: 3rem;
+    padding: 5px;
+    border-radius: 3rem;
+  }
 }

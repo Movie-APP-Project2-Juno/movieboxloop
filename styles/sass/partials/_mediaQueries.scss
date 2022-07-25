@@ -1,0 +1,41 @@
+// screen size smaller than 1020px
+@media (max-width: 1020px) {
+  .imgContainer {
+      h1 {
+          font-size: 3rem;
+          margin-right: 2rem;
+      }
+  }
+}
+
+// screen size smaller than 741px
+@media (max-width: 741px) {
+  .wrapper {
+      .imgContainer {
+          display: block;
+          width: 100%;
+          text-align: center;
+          h1 {
+              margin-right: 0;
+          }
+          .logo {
+              margin: auto;
+              width: 60%;
+          }
+      }
+      // form
+      .searchForm {
+          height: 3rem;
+          input {
+              padding: 5px 5px 5px 10px;
+              font-size: 1rem;
+          }
+          button {
+              width: 3rem;
+              padding: 5px;
+              border-radius: 3rem;
+          }
+  
+      }
+  }
+}
